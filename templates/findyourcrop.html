@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiCrop - Find Your Crop</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; }
+        .topnav { background-color: #222; overflow: hidden; }
+        .topnav a { float: left; display: block; color: #f2f2f2; padding: 14px 20px; text-decoration: none; font-size: 15px; }
+        .topnav a:hover { background-color: #555; }
+        .topnav a.active { background-color: #4CAF50; color: white; }
+
+        .yellow-banner {
+            background: yellow;
+            padding: 14px 20px;
+            text-align: right;
+        }
+        .yellow-banner span {
+            font-size: 28px;
+            font-weight: bold;
+            color: red;
+            font-style: italic;
+        }
+
+        .page-wrap {
+            position: relative;
+            min-height: 580px;
+            background: url('https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?w=1280&q=80') center/cover no-repeat;
+        }
+
+        .form-area {
+            position: absolute;
+            right: 80px;
+            top: 20px;
+            width: 240px;
+            text-align: center;
+        }
+
+        .form-area p {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            color: #222;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 200px;
+            padding: 6px 8px;
+            margin-top: 2px;
+            border: 1px solid #aaa;
+            border-radius: 2px;
+            font-size: 13px;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .predict-bar {
+            position: absolute;
+            bottom: 60px;
+            left: 0; right: 0;
+            background: #1565C0;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .predict-bar button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .result-bar {
+            background: #111;
+            padding: 10px 16px;
+        }
+        .result-bar p {
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="topnav">
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a class="active" href="{{ url_for('findyourcrop') }}">FindYourCrop</a>
+</div>
+
+<div class="yellow-banner">
+    <span>Find Your Best Crop Here</span>
+</div>
+
+<form action="{{ url_for('predict') }}" method="post">
+<div class="page-wrap">
+    <div class="form-area">
+        <p>Please enter the conditions</p>
+
+        <label for="nitrogen">nitrogen:</label>
+        <input type="text" id="nitrogen" name="nitrogen" placeholder="nitrogen" required>
+
+        <label for="phosphorous">phosphorous:</label>
+        <input type="text" id="phosphorous" name="phosphorous" placeholder="phosphorous" required>
+
+        <label for="potassium">potassium:</label>
+        <input type="text" id="potassium" name="potassium" placeholder="potassium" required>
+
+        <label for="temperature">temperature:</label>
+        <input type="text" id="temperature" name="temperature" placeholder="temperature" required>
+
+        <label for="humidity">humidity:</label>
+        <input type="text" id="humidity" name="humidity" placeholder="humidity" required>
+
+        <label for="ph">ph:</label>
+        <input type="text" id="ph" name="ph" placeholder="ph" required>
+
+        <label for="rainfall">rainfall:</label>
+        <input type="text" id="rainfall" name="rainfall" placeholder="rainfall" required>
+    </div>
+</div>
+
+<div class="predict-bar">
+    <button type="submit">Predict</button>
+</div>
+</form>
+
+<div class="result-bar">
+    <p class="flask-output">{% if prediction_text %}{{ prediction_text }}{% endif %}</p>
+</div>
+
+</body>
+</html>

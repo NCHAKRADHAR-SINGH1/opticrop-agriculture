@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiCrop - Home</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; }
+        .topnav { background-color: #222; overflow: hidden; }
+        .topnav a { float: left; display: block; color: #f2f2f2; padding: 14px 20px; text-decoration: none; font-size: 15px; }
+        .topnav a:hover { background-color: #555; }
+        .topnav a.active { background-color: #4CAF50; color: white; }
+        .hero {
+            position: relative;
+            height: 420px;
+            background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1280&q=80') center/cover no-repeat;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .hero-text { font-size: 56px; letter-spacing: 6px; color: #555; font-weight: 300; font-family: 'Courier New', monospace; }
+        .content { padding: 20px 16px; background: white; }
+        .content h2 { font-size: 18px; margin-bottom: 8px; }
+        .content p { font-size: 14px; color: #333; line-height: 1.6; }
+    </style>
+</head>
+<body>
+<div class="topnav">
+    <a class="active" href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('findyourcrop') }}">FindYourCrop</a>
+</div>
+<div class="content">
+    <h2>Opti Crop Agricultural Optimisation</h2>
+    <p>The main purpose of the OptiCrop aims to develop an advanced software system that utilizes data-driven insights to optimize agricultural production for different crops</p>
+</div>
+<div class="hero">
+    <span class="hero-text">opti-crop</span>
+</div>
+</body>
+</html>
